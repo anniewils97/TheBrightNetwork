@@ -14,10 +14,12 @@ public class Message {
 
     @Column
     private String messageContent;
+
     @ManyToOne
     @JoinColumn(name = "subscription_id")
     @JsonIgnoreProperties({"messages"})
     private Subscription subscription;
+
     @Column
     private LocalDateTime timeStamp;
 
