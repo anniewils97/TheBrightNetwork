@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class User {
     @Column
     private String role;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
     private List<Subscription> subscriptions;
 
     //default constructor

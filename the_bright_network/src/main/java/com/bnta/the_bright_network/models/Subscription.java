@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -12,9 +13,18 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"subscriptions"})
     private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "chat_room_id")
+    @JsonIgnoreProperties({"subscriptions"})
     private ChatRoom chatRoom;
 
+    @OneToMany(mappedBy = "subscription")
+    @JsonIgnoreProperties({"subscription"})
     private List<Message> messages;
 
     public Subscription() {

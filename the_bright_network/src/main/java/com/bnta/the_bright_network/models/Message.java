@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -13,7 +14,9 @@ public class Message {
 
     @Column
     private String messageContent;
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "subscription_id")
+    @JsonIgnoreProperties({"messages"})
     private Subscription subscription;
     @Column
     private LocalDateTime timeStamp;

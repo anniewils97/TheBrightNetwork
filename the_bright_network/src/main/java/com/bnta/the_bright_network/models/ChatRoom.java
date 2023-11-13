@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,15 +18,15 @@ public class ChatRoom {
     @Column
     private String name;
 
+    @OneToMany(mappedBy = "chatRoom")
+    @JsonIgnoreProperties({"chatRoom"})
     private List<Subscription> subscriptions;
-
-    private List<Message> messages;
 
     //Constructors
     public ChatRoom(String name) {
         this.name = name;
         this.subscriptions = new ArrayList<>();
-        this.messages = new ArrayList<>();
+
     }
 
     //Default constructor
