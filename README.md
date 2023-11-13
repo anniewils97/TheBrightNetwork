@@ -1,8 +1,10 @@
-## Chatroom Project Example Brief
+## The Bright NetWork Chatroom
  
 We chat over the internet hundreds, sometimes thousands of times per day. Before Slack, Facebook, and Twitter were around, the real-time-communication niche of the internet was dominated by chatrooms. While you can emulate a more interesting and complex messaging platform (Discord, Slack, WhatsApp etc), you need to keep the scope of this project in mind, as a week is not a long time! A good way to approach this project is to start with the very basic “chatroom” MVP—where everyone can use any chat—and build up your extension functionality piece by piece.
 
 ### MVP
+
+Below: input planning phase and our way of working, day 1 through 6(?).
 
 At its heart, a chatroom is a simple concept. A user joins the chatroom, where they can send messages, which can be seen by other users. The app will need models for the Users, Rooms, and Messages. Bear in mind that each User will need a unique identifier (either a randomly generated or user-specified username, separate to their unique database id). Each message will need assigned to the user who sent it, and the chatroom that it is sent in so think about how you implement this information as properties of your Message. Additionally, you may want extra information attached to your messages, such as the time sent. The Chatroom model may or may not have a “name” (*e.g.* "c7_classroom"), but do remember that it will need to display messages in reverse chronological order!
 
@@ -12,20 +14,26 @@ This project doesn’t lend itself to a huge amount of business logic in the bac
 
 ### Key Functionality
 
-Your MVP should be able to:
+Our program has the following functionalities:
 
 * Allow for the creation of a new user
 * Allow you to update the information of a user
 * Delete a user
 * Allow a user to post a message in a chatroom
-* Allow users to read messages sent by other users in a chatroom
+* Allow a user to update their message
+* Allow users to read messages sent by other users in a chatroom, most recent first
+* Allow users to create a chatroom dependent on it having two members
+* Display all existing chatrooms
+* Display all users in a specific chatroom
 
 ### Extensions
 
 When you think of chatrooms/message board/forums/group chats, there is a ton of extra functionality not considered in the MVP. You could look at adding extra information to the classes: for the user class, you could add “roles”  - user, moderator, admin - that modify the allowed behaviour. The message class can take on a whole host of extra information, for example:
 
-- Different types of media (photos, videos) 
-- Slack-esque “reactions”
+- Allow user to search a message within a chatroom by keyword
+- Allow user to search a message across all chatrooms by keyword
+- Allow users to react to a message
+- Allow user to add a friend
 
 Also, the chatrooms in the MVP might all be public and available to anyone who has access to the API. You could add functionality that only allows specific people into chatrooms. There are a few ways to do this: whitelisting, blacklisting or password-protection to name a few, and these would require adding a password or lists of allowed/blocked players to the chatroom model.
 
