@@ -1,10 +1,24 @@
-## The Bright NetWork Chatroom
+## The Bright NetWork Chatroom - The Bright Way to Network
+
+"Bright minds think alike!"
  
-We chat over the internet hundreds, sometimes thousands of times per day. Before Slack, Facebook, and Twitter were around, the real-time-communication niche of the internet was dominated by chatrooms. While you can emulate a more interesting and complex messaging platform (Discord, Slack, WhatsApp etc), you need to keep the scope of this project in mind, as a week is not a long time! A good way to approach this project is to start with the very basic “chatroom” MVP—where everyone can use any chat—and build up your extension functionality piece by piece.
+The purpose of the application is to faciliate learning and networking of BNTA coursemates via the following:
+
+1. Enable BNTA trainers to create chatrooms for individual study groups and assign users to these rooms
+2. Enable users to create their own study groups over the Winter Break
+3. Enable users to create code challenge groups to study/work towards hackathons and codewars.
+4. Enable current users to connect with BNTA graduates/consultants i.e. an alumni networking service
+
 
 ### MVP
 
 Below: input planning phase and our way of working, day 1 through 6(?).
+
+Day 1 (Sunday): 
+Day 2 (Monday):
+Day 3 (Tuesday):
+Day 4 (Wednesday):
+Day 5 (Thursday):
 
 -------------- edit above to suit MVP -----------------
 
@@ -15,11 +29,13 @@ Our program has the following functionalities:
 
 * Allow for the creation of a new user
 * Allow you to update the information of a user
-* Delete a user
+* Delete a user from the database
 * Allow a user to post a message in a chatroom
 * Allow a user to update their message
 * Allow users to read messages sent by other users in a chatroom, most recent first
 * Allow users to create a chatroom dependent on it having two members
+* Allow a new user to be added to an existing chatroom (via creating a new subscription for the user to the chatroom)
+* Delete a subscription (removing user from chatroom)
 * Display all existing chatrooms
 * Display all users in a specific chatroom
 
