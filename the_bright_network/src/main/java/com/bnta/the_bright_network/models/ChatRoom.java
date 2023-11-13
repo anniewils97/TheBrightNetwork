@@ -2,6 +2,7 @@ package com.bnta.the_bright_network.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,10 +19,13 @@ public class ChatRoom {
 
     private List<Subscription> subscriptions;
 
+    private List<Message> messages;
+
     //Constructors
-    public ChatRoom(String name, List<Subscription> subscriptions) {
+    public ChatRoom(String name) {
         this.name = name;
-        this.subscriptions = subscriptions;
+        this.subscriptions = new ArrayList<>();
+        this.messages = new ArrayList<>();
     }
 
     //Default constructor
