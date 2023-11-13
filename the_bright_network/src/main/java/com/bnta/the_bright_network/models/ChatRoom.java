@@ -19,8 +19,7 @@ public class ChatRoom {
     private List<Subscription> subscriptions;
 
     //Constructors
-    public ChatRoom(long id, String name, List<Subscription> subscriptions) {
-        this.id = id;
+    public ChatRoom(String name, List<Subscription> subscriptions) {
         this.name = name;
         this.subscriptions = subscriptions;
     }
