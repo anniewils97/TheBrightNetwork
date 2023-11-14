@@ -30,3 +30,4 @@ public class ChatRoomController {
         } return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
+
