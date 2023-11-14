@@ -22,8 +22,8 @@ public class ChatRoomController {
     MessageService messageService;
 
     //Creating a message in the chatroom
-    @PostMapping
-    public ResponseEntity<Message> addNewMessage(@RequestBody MessageDTO messageDTO){
+    @PostMapping (value = "/{id}/messages")
+    public ResponseEntity<Message> addNewMessage(@PathVariable Long id, @RequestBody MessageDTO messageDTO){
         try {
             Message message = messageService.saveMessage(messageDTO);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
