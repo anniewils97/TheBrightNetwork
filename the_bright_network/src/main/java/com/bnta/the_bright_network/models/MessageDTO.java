@@ -2,35 +2,23 @@ package com.bnta.the_bright_network.models;
 
 public class MessageDTO {
 
-    private long id;
-
-    private  Subscription subscription;
+    private  Long subscriptionId;
 
     private String messageContent;
 
-    public MessageDTO(long id, Subscription subscription, String messageContent) {
-        this.id = id;
-        this.subscription = subscription;
+    public MessageDTO(Long subscriptionId  , String messageContent) {
+        this.subscriptionId = subscriptionId;
         this.messageContent = messageContent;
     }
 
     public MessageDTO() {
     }
 
-    public long getId() {
-        return id;
+    public Long getSubscriptionId() {
+        return subscriptionId;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Subscription getSubscription() {
-        return subscription;
-    }
-
-    public void setSubscription(Subscription subscription) {
-        this.subscription = subscription;
+    public void setSubscriptionId(Long subscriptionId) {
+        this.subscriptionId = subscriptionId;
     }
 
     public String getMessageContent() {
@@ -40,4 +28,4 @@ public class MessageDTO {
     public void setMessageContent(String messageContent) {
         this.messageContent = messageContent;
     }
-}
+} //End
