@@ -37,6 +37,7 @@ public class ChatRoomService {
             allMessages.addAll(subscriptionMessages);
         }
         Collections.sort(allMessages, (a,b)->a.getTimeStamp().compareTo(b.getTimeStamp()));
+        Collections.reverse(allMessages);
         return allMessages;
     }
 }

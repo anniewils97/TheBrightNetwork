@@ -34,10 +34,6 @@ public class SubscriptionService {
         subscriptionRepository.save(subscription);
         return subscription;
 
-
-
     }
-
-
 
 } //Last curly bracket
