@@ -3,6 +3,7 @@ package com.bnta.the_bright_network.controllers;
 import com.bnta.the_bright_network.models.ChatRoom;
 import com.bnta.the_bright_network.models.Message;
 import com.bnta.the_bright_network.models.MessageDTO;
+import com.bnta.the_bright_network.models.MessageReplyDTO;
 import com.bnta.the_bright_network.services.ChatRoomService;
 import com.bnta.the_bright_network.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,8 +45,8 @@ public class ChatRoomController {
     }
 
     @GetMapping(value = "/{id}/messages")
-    public ResponseEntity <List<Message>> getAllMessagesInOrder(@PathVariable long id){
-        List<Message> orderedMessages = chatRoomService.getOrderedMessages(id);
+    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(@PathVariable long id){
+        List<MessageReplyDTO> orderedMessages = chatRoomService.getOrderedMessages(id);
         return new ResponseEntity<>(orderedMessages, HttpStatus.OK);
 
     }
