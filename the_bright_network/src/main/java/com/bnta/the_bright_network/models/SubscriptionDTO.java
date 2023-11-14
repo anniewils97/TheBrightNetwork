@@ -2,31 +2,31 @@ package com.bnta.the_bright_network.models;
 
 public class SubscriptionDTO {
 
-    private long userid;
+    private long userId;
 
-    private long chatroomid;
+    private long chatroomId;
 
-    public SubscriptionDTO(long userid, long chatroomid) {
-        this.userid = userid;
-        this.chatroomid = chatroomid;
+    public SubscriptionDTO(long userId, long chatroomId) {
+        this.userId = userId;
+        this.chatroomId = chatroomId;
     }
 
     public SubscriptionDTO() {
     }
 
-    public long getUserid() {
-        return userid;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUserid(long userid) {
-        this.userid = userid;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public long getChatroomid() {
-        return chatroomid;
+    public long getChatroomId() {
+        return chatroomId;
     }
 
-    public void setChatroomid(long chatroomid) {
-        this.chatroomid = chatroomid;
+    public void setChatroomId(long chatroomId) {
+        this.chatroomId = chatroomId;
     }
 }
