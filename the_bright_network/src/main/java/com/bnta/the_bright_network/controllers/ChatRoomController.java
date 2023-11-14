@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -40,6 +41,13 @@ public class ChatRoomController {
         if (chatRoom.isPresent()){
             return new ResponseEntity<>(chatRoom.get(), HttpStatus.OK);
         } return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(value = "/{id}/messages")
+    public ResponseEntity <List<Message>> getAllMessagesInOrder(@PathVariable long id){
+        List<Message> orderedMessages = chatRoomService.getOrderedMessages(id);
+        return new ResponseEntity<>(orderedMessages, HttpStatus.OK);
+
     }
 
 }//end
