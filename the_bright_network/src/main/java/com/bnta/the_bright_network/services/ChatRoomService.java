@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,6 +36,7 @@ public class ChatRoomService {
             List<Message> subscriptionMessages = subscription.getMessages();
             allMessages.addAll(subscriptionMessages);
         }
+        Collections.sort(allMessages, (a,b)->a.getTimeStamp().compareTo(b.getTimeStamp()));
         return allMessages;
     }
 }
