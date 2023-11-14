@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,16 +23,17 @@ public class MessageService {
 
 
     //Save a message in the db
-    public Message saveMessage(MessageDTO messageDTO) throws Exception
+    public Message saveMessage(Long chatRoomId, MessageDTO messageDTO) throws Exception
     {
-        Optional<Subscription> optionalSubscription = subscriptionRepository.findById(messageDTO.getSubscriptionId());
+
+        List<Subscription> optionalSubscription = subscriptionRepository.findByChatRoomIdAndUserId(chatRoomId, messageDTO.getuserId()); //findById(messageDTO.getSubscriptionId());
         if (optionalSubscription.isEmpty()){
             throw new Exception("this subscription does not exist");
         }
 
         Message message = new Message(
                 messageDTO.getMessageContent(),
-                optionalSubscription.get(),
+                optionalSubscription.get(0),
                 LocalDateTime.now());
         messageRepository.save(message);
         return message;

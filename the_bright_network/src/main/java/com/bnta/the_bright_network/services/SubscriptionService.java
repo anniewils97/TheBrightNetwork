@@ -33,7 +33,6 @@ public class SubscriptionService {
         Subscription subscription = new Subscription(user, chatRoom);
         subscriptionRepository.save(subscription);
         return subscription;
-
     }
 
 } //Last curly bracket
