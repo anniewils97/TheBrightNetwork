@@ -24,5 +24,10 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    //Create a new user in the db
+    public User createNewUser(User user){
+        return userRepository.save(user);
+    }
+
 
 } //End
