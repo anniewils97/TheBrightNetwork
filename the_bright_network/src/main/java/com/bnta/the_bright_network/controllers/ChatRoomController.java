@@ -1,14 +1,14 @@
 package com.bnta.the_bright_network.controllers;
 
 import com.bnta.the_bright_network.models.ChatRoom;
+import com.bnta.the_bright_network.models.Message;
+import com.bnta.the_bright_network.models.MessageDTO;
 import com.bnta.the_bright_network.services.ChatRoomService;
+import com.bnta.the_bright_network.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -18,7 +18,19 @@ public class ChatRoomController {
 
     @Autowired
     ChatRoomService chatRoomService;
+    @Autowired
+    MessageService messageService;
 
+    //Creating a message in the chatroom
+    @PostMapping
+    public ResponseEntity<Message> addNewMessage(@RequestBody MessageDTO messageDTO){
+        try {
+            Message message = messageService.saveMessage(messageDTO);
+            return new ResponseEntity<>(message, HttpStatus.CREATED);
+        } catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
+        }
+    }
 
     //display a chatroom by id
     @GetMapping(value = "/{id}")
@@ -29,4 +41,4 @@ public class ChatRoomController {
             return new ResponseEntity<>(chatRoom.get(), HttpStatus.OK);
         } return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-}
+}//end
