@@ -27,7 +27,7 @@ public class UserController {
 
     //Display a user by ID
     @GetMapping (value = "/{id}")
-    public ResponseEntity<User> getAUserById(@PathVariable long id){
+    public ResponseEntity<User> getUserById(@PathVariable long id){
         Optional<User> user = userService.getUserById(id);
         if(user.isPresent()){
             return new ResponseEntity<>(user.get(), HttpStatus.OK);
@@ -37,9 +37,9 @@ public class UserController {
 
     //Create a new user
     @PostMapping
-    public ResponseEntity<List<User>> createANewUser(@RequestBody User user){
+    public ResponseEntity<User> createANewUser(@RequestBody User user){
         userService.createNewUser(user);
-        return new ResponseEntity<>(userService.displayAllUsers(), HttpStatus.CREATED);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
 
