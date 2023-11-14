@@ -39,8 +39,8 @@ public class ChatRoomService {
             allMessages.addAll(subscriptionMessages);
         }
 
-        Collections.sort(allMessages, (a,b)->a.getTimeStamp().compareTo(b.getTimeStamp()));
-        Collections.reverse(allMessages);
+        Collections.sort(allMessages, (b,a)->a.getTimeStamp().compareTo(b.getTimeStamp()));
+
 
         ArrayList<MessageReplyDTO> orderedMessages = new ArrayList<>();
         for (Message message: allMessages) {
