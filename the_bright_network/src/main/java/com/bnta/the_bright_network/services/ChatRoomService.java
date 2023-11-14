@@ -43,9 +43,8 @@ public class ChatRoomService {
             List<Message> subscriptionMessages = subscription.getMessages();
             allMessages.addAll(subscriptionMessages);
         }
-
+        //Sort messages by timestamp using lambda function
         Collections.sort(allMessages, (b,a)->a.getTimeStamp().compareTo(b.getTimeStamp()));
-
 
         ArrayList<MessageReplyDTO> orderedMessages = new ArrayList<>();
       
