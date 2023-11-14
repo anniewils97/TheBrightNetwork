@@ -28,6 +28,11 @@ public class ChatRoomService {
     public Optional<ChatRoom> findChatRoomById(Long id){
         return chatRoomRepository.findById(id);
     }
+  
+      public List<ChatRoom> getAllChatrooms(){
+        return chatRoomRepository.findAll();
+    }
+
 
     public List<MessageReplyDTO> getOrderedMessages(long id) {
         //get all the subscriptions in a given chatroom
@@ -43,6 +48,7 @@ public class ChatRoomService {
         Collections.reverse(allMessages);
 
         ArrayList<MessageReplyDTO> orderedMessages = new ArrayList<>();
+      
         for (Message message: allMessages) {
             MessageReplyDTO messageDTO = new MessageReplyDTO(
                     message.getId(),
@@ -56,8 +62,11 @@ public class ChatRoomService {
         return orderedMessages;
     }
 
+
 //    public List<MessageReplyDTO> messagesToMessageReplyDTO(List<Message> messages){
 //
 //        return null;
 //    }
+
+
 }

@@ -33,6 +33,11 @@ public class ChatRoomController {
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
         }
     }
+    @GetMapping
+    public  ResponseEntity<List<ChatRoom>> getAllChatrooms(){
+        List<ChatRoom> chatRooms = chatRoomService.getAllChatrooms();
+        return new ResponseEntity<>(chatRooms, HttpStatus.OK);
+    }
 
     //display a chatroom by id
     @GetMapping(value = "/{id}")
