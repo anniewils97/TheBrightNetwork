@@ -27,6 +27,10 @@ public class ChatRoomService {
         return chatRoomRepository.findById(id);
     }
 
+    public List<ChatRoom> getAllChatrooms(){
+        return chatRoomRepository.findAll();
+    }
+
     public List<Message> getOrderedMessages(long id) {
         //get all the subscriptions in a given chatroom
         List<Subscription> subscriptions = subscriptionRepository.findByChatRoomId(id);
@@ -40,4 +44,5 @@ public class ChatRoomService {
         Collections.reverse(allMessages);
         return allMessages;
     }
+
 }
