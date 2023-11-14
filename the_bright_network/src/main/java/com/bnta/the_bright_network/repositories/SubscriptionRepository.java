@@ -11,7 +11,10 @@ import java.util.Optional;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
     //derived query
+//    SELECT chatroom_id FROM subscriptions WHERE chatroom_id={id}
     List<Subscription> findByChatRoomId(Long id);
+
+//    SELECT chatroom_id, userId FROM subscriptions WHERE chatroom_id={id} AND user_id={id}
     List<Subscription> findByChatRoomIdAndUserId(Long chatRoomId, Long userId);
 
 }

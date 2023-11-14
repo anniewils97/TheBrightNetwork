@@ -23,8 +23,7 @@ public class MessageService {
 
 
     //Save a message in the db
-    public Message saveMessage(Long chatRoomId, MessageDTO messageDTO) throws Exception
-    {
+    public Message saveMessage(Long chatRoomId, MessageDTO messageDTO) throws Exception {
 
         List<Subscription> optionalSubscription = subscriptionRepository.findByChatRoomIdAndUserId(chatRoomId, messageDTO.getuserId()); //findById(messageDTO.getSubscriptionId());
         if (optionalSubscription.isEmpty()){
