@@ -1,9 +1,6 @@
 package com.bnta.the_bright_network.controllers;
 
-import com.bnta.the_bright_network.models.ChatRoom;
-import com.bnta.the_bright_network.models.Message;
-import com.bnta.the_bright_network.models.MessageDTO;
-import com.bnta.the_bright_network.models.MessageReplyDTO;
+import com.bnta.the_bright_network.models.*;
 import com.bnta.the_bright_network.services.ChatRoomService;
 import com.bnta.the_bright_network.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +31,8 @@ public class ChatRoomController {
         }
     }
     @GetMapping
-    public  ResponseEntity<List<ChatRoom>> getAllChatrooms(){
-        List<ChatRoom> chatRooms = chatRoomService.getAllChatrooms();
+    public  ResponseEntity<List<ChatroomDTO>> getAllChatrooms(){
+        List<ChatroomDTO> chatRooms = chatRoomService.getAllChatrooms();
         return new ResponseEntity<>(chatRooms, HttpStatus.OK);
     }
 
