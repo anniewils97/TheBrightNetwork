@@ -27,7 +27,7 @@ public class ChatRoomController {
     @PostMapping (value = "/{id}/messages")
     public ResponseEntity<Message> addNewMessage(@PathVariable Long id, @RequestBody MessageDTO messageDTO){
         try {
-            Message message = messageService.saveMessage(messageDTO);
+            Message message = messageService.saveMessage(id, messageDTO);
             return new ResponseEntity<>(message, HttpStatus.CREATED);
         } catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.FORBIDDEN);
