@@ -2,7 +2,7 @@ package com.bnta.the_bright_network.services;
 
 import com.bnta.the_bright_network.models.ChatRoom;
 import com.bnta.the_bright_network.models.Subscription;
-import com.bnta.the_bright_network.models.SubscriptionDTO;
+import com.bnta.the_bright_network.models.SubscriptionInputDTO;
 import com.bnta.the_bright_network.models.User;
 import com.bnta.the_bright_network.repositories.ChatRoomRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
@@ -31,10 +31,19 @@ public class SubscriptionService {
 
 //    adding a new user to the chatroom
     @Transactional
-    public Subscription addNewUserToChatroom(SubscriptionDTO subscriptionDTO){
-        User user =  userRepository.findById(subscriptionDTO.getUserId()).get();
-        ChatRoom chatRoom = chatRoomRepository.findById(subscriptionDTO.getChatroomId()).get();
-        Subscription subscription = new Subscription(user, chatRoom);
+    public Subscription addNewUserToChatroom(SubscriptionInputDTO subscriptionDTO) throws Exception{
+        //refactor, add only the same user in one a chatroom function.
+        Long userId = subscriptionDTO.getUserId();
+        Long chatRoomId = subscriptionDTO.getChatroomId();
+
+        Optional<User> user =  userRepository.findById(userId);
+        Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId);
+        List<Subscription> subscriptionOptional = subscriptionRepository.findByChatRoomIdAndUserId(chatRoomId, userId);
+        if (user.isEmpty() || chatRoom.isEmpty() || !subscriptionOptional.isEmpty()){
+            throw new Exception("Check if user is in the chatroom or if chatroom/user exists.");
+        }
+
+        Subscription subscription = new Subscription(user.get(), chatRoom.get());
         subscriptionRepository.save(subscription);
         return subscription;
     }
@@ -42,5 +51,10 @@ public class SubscriptionService {
     public List<Subscription> displayAllSubscriptions(){
         return subscriptionRepository.findAll();
     }
+
+
+
+
+
 
 } //Last curly bracket

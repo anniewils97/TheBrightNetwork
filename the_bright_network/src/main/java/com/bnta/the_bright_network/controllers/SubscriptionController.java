@@ -1,6 +1,7 @@
 package com.bnta.the_bright_network.controllers;
 import com.bnta.the_bright_network.models.Subscription;
-import com.bnta.the_bright_network.models.SubscriptionDTO;
+import com.bnta.the_bright_network.models.SubscriptionInputDTO;
+import com.bnta.the_bright_network.models.SubscriptionReplyDTO;
 import com.bnta.the_bright_network.services.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/subscriptions")
@@ -22,22 +22,22 @@ public class SubscriptionController {
     ModelMapper modelMapper;
 
     @PostMapping
-    public ResponseEntity<Subscription> addPersonToChatroom(@RequestBody SubscriptionDTO subscriptionDTO){
-        Subscription chatroom = subscriptionService.addNewUserToChatroom(subscriptionDTO);
+    public ResponseEntity<Subscription> addPersonToChatroom(@RequestBody SubscriptionInputDTO subscriptionInputDTO){
+        try {
+        Subscription chatroom = subscriptionService.addNewUserToChatroom(subscriptionInputDTO);
         return new ResponseEntity<>(chatroom, HttpStatus.OK);
-
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping
-    public ResponseEntity<List<SubscriptionDTO>> getAllSubscriptions(){
-
-
-
-        List<SubscriptionDTO> subscriptionDTOs = subscriptionService.displayAllSubscriptions()
+    public ResponseEntity<List<SubscriptionReplyDTO>> getAllSubscriptions(){
+        List<SubscriptionReplyDTO> subscriptionReplyDTOs = subscriptionService.displayAllSubscriptions()
                 .stream()
-                .map(subscription -> modelMapper.map(subscription, SubscriptionDTO.class))
+                .map(subscription -> modelMapper.map(subscription, SubscriptionReplyDTO.class))
                 .toList();
 
-        return new ResponseEntity<>(subscriptionDTOs, HttpStatus.OK);
+        return new ResponseEntity<>(subscriptionReplyDTOs, HttpStatus.OK);
     }
 }
