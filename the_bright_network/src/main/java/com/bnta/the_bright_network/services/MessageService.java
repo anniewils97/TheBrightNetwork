@@ -40,13 +40,23 @@ public class MessageService {
         return message;
     }
 
-    @Transactional
-    public Message updateMessage(MessageReplyDTO messageReplyDTO, long id){
-        Message messageToUpdate = messageRepository.findById(id).get();
-        messageToUpdate.setMessageContent(messageReplyDTO.getMessageContent());
+    public MessageReplyDTO updateMessage(MessageDTO messageDTO, long id) throws Exception{
+        Optional<Message> messageToUpdateOptional = messageRepository.findById(id);
+        if(messageToUpdateOptional.isEmpty()){
+            throw new Exception("No message exists with this Id");
+        }
+        Message messageToUpdate = messageToUpdateOptional.get();
+        messageToUpdate.setMessageContent(messageDTO.getMessageContent());
 //        messageToUpdate.setTimeStamp(messageReplyDTO.getTimeStamp());
         messageRepository.save(messageToUpdate);
-        return messageToUpdate;
+
+        MessageReplyDTO messageReply = new MessageReplyDTO(
+                messageToUpdate.getId(),
+                messageToUpdate.getSubscription().getUser().getName(),
+                messageToUpdate.getMessageContent(),
+                messageToUpdate.getTimeStamp().toString()
+                );
+        return messageReply;
     }
 
 

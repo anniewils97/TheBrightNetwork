@@ -31,8 +31,8 @@ public class ChatRoomController {
         }
     }
     @GetMapping
-    public  ResponseEntity<List<ChatroomDTO>> getAllChatrooms(){
-        List<ChatroomDTO> chatRooms = chatRoomService.getAllChatrooms();
+    public  ResponseEntity<List<ChatRoomDTO>> getAllChatrooms(){
+        List<ChatRoomDTO> chatRooms = chatRoomService.getAllChatrooms();
         return new ResponseEntity<>(chatRooms, HttpStatus.OK);
     }
 
@@ -47,10 +47,9 @@ public class ChatRoomController {
     }
 
     @GetMapping(value = "/{id}/messages")
-    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(@PathVariable long id){
-        List<MessageReplyDTO> orderedMessages = chatRoomService.getOrderedMessages(id);
-        return new ResponseEntity<>(orderedMessages, HttpStatus.OK);
-
+    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(@PathVariable long id, @RequestBody MessageDTO messageDTO){
+        List<MessageReplyDTO> orderedMessages = chatRoomService.getOrderedMessages(id, messageDTO);
+        return new ResponseEntity<>(orderedMessages, orderedMessages==null?HttpStatus.FORBIDDEN:HttpStatus.OK);
     }
 
     //Display all user in a selected chatroom
