@@ -8,6 +8,7 @@ import com.bnta.the_bright_network.repositories.ChatRoomRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
 import com.bnta.the_bright_network.repositories.UserRepository;
 import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class SubscriptionService {
 
     @Autowired
     ChatRoomRepository chatRoomRepository;
+    @Autowired
+    ModelMapper modelMapper;
 
 //    adding a new user to the chatroom
     @Transactional
