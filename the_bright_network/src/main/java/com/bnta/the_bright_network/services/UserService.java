@@ -1,10 +1,12 @@
 package com.bnta.the_bright_network.services;
 
 import com.bnta.the_bright_network.models.User;
+import com.bnta.the_bright_network.models.UserDTO;
 import com.bnta.the_bright_network.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +17,14 @@ public class UserService {
     UserRepository userRepository;
 
     //Displaying all users
-    public List<User> displayAllUsers(){
-        return userRepository.findAll();
+    public List<UserDTO> displayAllUsers(){
+        List <User> users =  userRepository.findAll();
+        List <UserDTO> userDTOs = new ArrayList<>();
+        for(User user : users ){
+            UserDTO userDTO = new UserDTO(user.getId(), user.getName(), user.getAge(),user.getRole());
+           userDTOs.add(userDTO);
+        }
+        return userDTOs;
     }
 
     //Getting users by their ID
