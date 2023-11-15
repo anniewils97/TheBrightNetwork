@@ -1,9 +1,6 @@
 package com.bnta.the_bright_network.services;
 
-import com.bnta.the_bright_network.models.ChatRoom;
-import com.bnta.the_bright_network.models.Subscription;
-import com.bnta.the_bright_network.models.SubscriptionInputDTO;
-import com.bnta.the_bright_network.models.User;
+import com.bnta.the_bright_network.models.*;
 import com.bnta.the_bright_network.repositories.ChatRoomRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
 import com.bnta.the_bright_network.repositories.UserRepository;
@@ -31,10 +28,10 @@ public class SubscriptionService {
 
 //    adding a new user to the chatroom
     @Transactional
-    public Subscription addNewUserToChatroom(SubscriptionInputDTO subscriptionDTO) throws Exception{
+    public SubscriptionReplyDTO addNewUserToChatroom(SubscriptionInputDTO subscriptionInputDTO) throws Exception{
         //refactor, add only the same user in one a chatroom function.
-        Long userId = subscriptionDTO.getUserId();
-        Long chatRoomId = subscriptionDTO.getChatroomId();
+        Long userId = subscriptionInputDTO.getUserId();
+        Long chatRoomId = subscriptionInputDTO.getChatroomId();
 
         Optional<User> user =  userRepository.findById(userId);
         Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId);
@@ -45,7 +42,13 @@ public class SubscriptionService {
 
         Subscription subscription = new Subscription(user.get(), chatRoom.get());
         subscriptionRepository.save(subscription);
-        return subscription;
+        SubscriptionReplyDTO subscriptionReplyDTO = new SubscriptionReplyDTO
+                (
+                subscription.getId(),
+                subscription.getUser().getId(),
+                subscription.getChatRoom().getId()
+                );
+        return subscriptionReplyDTO;
     }
 
     public List<Subscription> displayAllSubscriptions(){

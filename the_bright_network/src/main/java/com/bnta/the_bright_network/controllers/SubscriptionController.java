@@ -22,10 +22,10 @@ public class SubscriptionController {
     ModelMapper modelMapper;
 
     @PostMapping
-    public ResponseEntity<Subscription> addPersonToChatroom(@RequestBody SubscriptionInputDTO subscriptionInputDTO){
+    public ResponseEntity<SubscriptionReplyDTO> addPersonToChatroom(@RequestBody SubscriptionInputDTO subscriptionInputDTO){
         try {
-        Subscription chatroom = subscriptionService.addNewUserToChatroom(subscriptionInputDTO);
-        return new ResponseEntity<>(chatroom, HttpStatus.OK);
+        SubscriptionReplyDTO subscriptionReplyDTO = subscriptionService.addNewUserToChatroom(subscriptionInputDTO);
+        return new ResponseEntity<>(subscriptionReplyDTO, HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
