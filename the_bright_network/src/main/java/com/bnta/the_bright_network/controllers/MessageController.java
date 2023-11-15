@@ -1,6 +1,7 @@
 package com.bnta.the_bright_network.controllers;
 
 import com.bnta.the_bright_network.models.Message;
+import com.bnta.the_bright_network.models.MessageDTO;
 import com.bnta.the_bright_network.models.MessageReplyDTO;
 import com.bnta.the_bright_network.repositories.MessageRepository;
 import com.bnta.the_bright_network.services.MessageService;
@@ -19,12 +20,13 @@ public class MessageController {
     MessageService messageService;
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<Message> updateMessage(@RequestBody MessageReplyDTO messageReplyDTO, @PathVariable long id) {
-        Message updatedMessage = messageService.updateMessage(messageReplyDTO, id);
+    public ResponseEntity<MessageReplyDTO> updateMessage(@RequestBody MessageDTO messageDTO, @PathVariable long id) {
+        try{
+        MessageReplyDTO updatedMessage = messageService.updateMessage(messageDTO, id);
         return new ResponseEntity<>(updatedMessage, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
-
-
-
 
 } //Last curly bracket
