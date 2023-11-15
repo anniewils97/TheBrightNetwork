@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.services;
 
+
 import com.bnta.the_bright_network.models.*;
 import com.bnta.the_bright_network.repositories.ChatRoomRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
@@ -32,7 +33,6 @@ public class SubscriptionService {
         //refactor, add only the same user in one a chatroom function.
         Long userId = subscriptionInputDTO.getUserId();
         Long chatRoomId = subscriptionInputDTO.getChatroomId();
-
         Optional<User> user =  userRepository.findById(userId);
         Optional<ChatRoom> chatRoom = chatRoomRepository.findById(chatRoomId);
         List<Subscription> subscriptionOptional = subscriptionRepository.findByChatRoomIdAndUserId(chatRoomId, userId);

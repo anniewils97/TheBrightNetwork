@@ -1,6 +1,7 @@
 package com.bnta.the_bright_network.controllers;
 
 import com.bnta.the_bright_network.models.User;
+import com.bnta.the_bright_network.models.UserDTO;
 import com.bnta.the_bright_network.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class UserController {
 
     //Getting all users
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
-        List<User> users = userService.displayAllUsers();
+    public ResponseEntity<List<UserDTO>> getAllUsers(){
+        List<UserDTO> users = userService.displayAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
