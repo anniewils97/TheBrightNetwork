@@ -52,4 +52,12 @@ public class ChatRoomController {
         return new ResponseEntity<>(orderedMessages, orderedMessages==null?HttpStatus.FORBIDDEN:HttpStatus.OK);
     }
 
+    //Display all user in a selected chatroom
+    @GetMapping(value = "/{id}/users")
+    public ResponseEntity<List<UserDTO>> getAllUsersInSpecificChatroom(@PathVariable long id){
+        List<UserDTO> users = chatRoomService.allUsersInChatroom(id);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+
 }//end

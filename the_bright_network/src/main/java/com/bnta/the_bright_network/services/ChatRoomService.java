@@ -24,6 +24,8 @@ public class ChatRoomService {
     public Optional<ChatRoom> findChatRoomById(Long id){
         return chatRoomRepository.findById(id);
     }
+
+
   
     public List<ChatRoomDTO> getAllChatrooms() {
 //        finding all the chatrooms in db
@@ -71,6 +73,24 @@ public class ChatRoomService {
         }
 
         return orderedMessages;
+    }
+
+//    Display all users in a specific chosen chatroom
+    public List<UserDTO> allUsersInChatroom(long id){
+        Optional<ChatRoom> existingChatroom = chatRoomRepository.findById(id); //Looks for the id of the chatroom
+        //once chatroom found, look for existing users in the chatroom
+        if (existingChatroom.isEmpty()){
+            return null;
+        }
+        //
+        List<UserDTO> allUsers = new ArrayList<>();
+        for (Subscription subscription: existingChatroom.get().getSubscriptions()){
+//            allUsers.add(subscription.getUser());
+            User user = subscription.getUser();
+            UserDTO userDTO= new UserDTO(user.getId(), user.getName(), user.getAge(),user.getRole());
+            allUsers.add(userDTO);
+        }
+        return allUsers;
     }
 
 
