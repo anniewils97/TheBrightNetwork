@@ -18,7 +18,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-
     //Getting all users
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers(){
@@ -43,5 +42,11 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
+//    update a users information
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<UserDTO> updateUserInfo(@PathVariable long id, @RequestBody UserDTO userDTO){
+        UserDTO update = userService.updateProfileInfo(id, userDTO);
+        return new ResponseEntity<>(update, HttpStatus.OK);
+    }
 
 } //end
