@@ -2,9 +2,11 @@ package com.bnta.the_bright_network.services;
 
 import com.bnta.the_bright_network.models.Message;
 import com.bnta.the_bright_network.models.MessageDTO;
+import com.bnta.the_bright_network.models.MessageReplyDTO;
 import com.bnta.the_bright_network.models.Subscription;
 import com.bnta.the_bright_network.repositories.MessageRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +40,14 @@ public class MessageService {
         return message;
     }
 
-    //
+    @Transactional
+    public Message updateMessage(MessageReplyDTO messageReplyDTO, long id){
+        Message messageToUpdate = messageRepository.findById(id).get();
+        messageToUpdate.setMessageContent(messageReplyDTO.getMessageContent());
+//        messageToUpdate.setTimeStamp(messageReplyDTO.getTimeStamp());
+        messageRepository.save(messageToUpdate);
+        return messageToUpdate;
+    }
 
 
 

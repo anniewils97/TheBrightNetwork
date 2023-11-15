@@ -1,7 +1,5 @@
 package com.bnta.the_bright_network.models;
 
-import java.time.LocalDateTime;
-
 public class MessageReplyDTO {
     private long message_id;
     private String username;
