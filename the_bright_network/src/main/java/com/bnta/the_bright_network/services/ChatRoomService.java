@@ -7,7 +7,6 @@ import com.bnta.the_bright_network.repositories.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -41,7 +40,13 @@ public class ChatRoomService {
         return chatroomDTOs;
     }
 
-    public List<MessageReplyDTO> getOrderedMessages(long id) {
+    public List<MessageReplyDTO> getOrderedMessages(long id, MessageDTO messageDTO) {
+
+        List<Subscription> chatRoomSubscriptions = subscriptionRepository.findByChatRoomIdAndUserId(id, messageDTO.getuserId());
+        if (chatRoomSubscriptions.isEmpty()){
+            return null;
+        }
+
         //get all the subscriptions in a given chatroom
         List<Subscription> subscriptions = subscriptionRepository.findByChatRoomId(id);
         //get messages from each subscription inside a given chatroom
@@ -56,13 +61,13 @@ public class ChatRoomService {
         ArrayList<MessageReplyDTO> orderedMessages = new ArrayList<>();
       
         for (Message message: allMessages) {
-            MessageReplyDTO messageDTO = new MessageReplyDTO(
+            MessageReplyDTO messageReplyDTO = new MessageReplyDTO(
                     message.getId(),
                     message.getSubscription().getUser().getName(),
                     message.getMessageContent(),
                     message.getTimeStamp().toString()
             );
-            orderedMessages.add(messageDTO);
+            orderedMessages.add(messageReplyDTO);
         }
 
         return orderedMessages;

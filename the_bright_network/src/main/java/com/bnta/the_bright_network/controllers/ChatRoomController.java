@@ -47,10 +47,9 @@ public class ChatRoomController {
     }
 
     @GetMapping(value = "/{id}/messages")
-    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(@PathVariable long id){
-        List<MessageReplyDTO> orderedMessages = chatRoomService.getOrderedMessages(id);
-        return new ResponseEntity<>(orderedMessages, HttpStatus.OK);
-
+    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(@PathVariable long id, @RequestBody MessageDTO messageDTO){
+        List<MessageReplyDTO> orderedMessages = chatRoomService.getOrderedMessages(id, messageDTO);
+        return new ResponseEntity<>(orderedMessages, orderedMessages==null?HttpStatus.FORBIDDEN:HttpStatus.OK);
     }
 
 }//end
