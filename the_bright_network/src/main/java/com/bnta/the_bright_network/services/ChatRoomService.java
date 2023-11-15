@@ -1,10 +1,7 @@
 package com.bnta.the_bright_network.services;
 
 
-import com.bnta.the_bright_network.models.ChatRoom;
-import com.bnta.the_bright_network.models.Message;
-import com.bnta.the_bright_network.models.MessageReplyDTO;
-import com.bnta.the_bright_network.models.Subscription;
+import com.bnta.the_bright_network.models.*;
 import com.bnta.the_bright_network.repositories.ChatRoomRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +26,20 @@ public class ChatRoomService {
         return chatRoomRepository.findById(id);
     }
   
-      public List<ChatRoom> getAllChatrooms(){
-        return chatRoomRepository.findAll();
+    public List<ChatroomDTO> getAllChatrooms() {
+//        finding all the chatrooms in db
+        List<ChatRoom> chatrooms = chatRoomRepository.findAll();
+//        initialising empty arraylist of chatroomDTOs
+        List<ChatroomDTO> chatroomDTOs = new ArrayList<>();
+//looping through the chatroom list
+        for (ChatRoom chatRoom : chatrooms) {
+//             for each chatroom taking id and name
+            ChatroomDTO chatroomDTO = new ChatroomDTO(chatRoom.getId(), chatRoom.getName());
+//            storing in the arraylist
+            chatroomDTOs.add(chatroomDTO);
+        }
+        return chatroomDTOs;
     }
-
 
     public List<MessageReplyDTO> getOrderedMessages(long id) {
         //get all the subscriptions in a given chatroom
