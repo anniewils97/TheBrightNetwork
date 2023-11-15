@@ -25,15 +25,15 @@ public class ChatRoomService {
         return chatRoomRepository.findById(id);
     }
   
-    public List<ChatroomDTO> getAllChatrooms() {
+    public List<ChatRoomDTO> getAllChatrooms() {
 //        finding all the chatrooms in db
         List<ChatRoom> chatrooms = chatRoomRepository.findAll();
 //        initialising empty arraylist of chatroomDTOs
-        List<ChatroomDTO> chatroomDTOs = new ArrayList<>();
+        List<ChatRoomDTO> chatroomDTOs = new ArrayList<>();
 //looping through the chatroom list
         for (ChatRoom chatRoom : chatrooms) {
 //             for each chatroom taking id and name
-            ChatroomDTO chatroomDTO = new ChatroomDTO(chatRoom.getId(), chatRoom.getName());
+            ChatRoomDTO chatroomDTO = new ChatRoomDTO(chatRoom.getId(), chatRoom.getName());
 //            storing in the arraylist
             chatroomDTOs.add(chatroomDTO);
         }
