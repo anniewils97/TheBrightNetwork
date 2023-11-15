@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/subscriptions")
 public class SubscriptionController {
@@ -20,5 +22,11 @@ public class SubscriptionController {
         Subscription chatroom = subscriptionService.addNewUserToChatroom(subscriptionDTO);
         return new ResponseEntity<>(chatroom, HttpStatus.OK);
 
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Subscription>> getAllSubscriptions(){
+        List<Subscription> subscriptions = subscriptionService.displayAllSubscriptions();
+        return new ResponseEntity<>(subscriptions, HttpStatus.OK);
     }
 }
