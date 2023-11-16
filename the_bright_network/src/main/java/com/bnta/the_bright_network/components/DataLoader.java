@@ -1,17 +1,12 @@
 package com.bnta.the_bright_network.components;
 
-import com.bnta.the_bright_network.models.ChatRoom;
-import com.bnta.the_bright_network.models.Message;
-import com.bnta.the_bright_network.models.Subscription;
-import com.bnta.the_bright_network.models.User;
-import com.bnta.the_bright_network.repositories.ChatRoomRepository;
-import com.bnta.the_bright_network.repositories.MessageRepository;
-import com.bnta.the_bright_network.repositories.SubscriptionRepository;
-import com.bnta.the_bright_network.repositories.UserRepository;
+import com.bnta.the_bright_network.models.*;
+import com.bnta.the_bright_network.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 
@@ -28,6 +23,8 @@ public class DataLoader implements ApplicationRunner {
     UserRepository userRepository;
     @Autowired
     MessageRepository messageRepository;
+    @Autowired
+    ReactionRepository reactionRepository;
 
     public DataLoader() {
     }
@@ -88,6 +85,9 @@ public class DataLoader implements ApplicationRunner {
         messageRepository.save(message3);
         messageRepository.save(message4);
         messageRepository.save(message5);
+
+        Reaction reaction1 = new Reaction("😂", user1, message3);
+        reactionRepository.save(reaction1);
     }
 
 }
