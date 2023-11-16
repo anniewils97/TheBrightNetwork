@@ -49,4 +49,10 @@ public class MessageController {
         return new ResponseEntity<>(allMessages, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Message> getMessageById(@PathVariable long id ){
+        Optional<Message> message = messageService.getMessageById(id);
+        return new ResponseEntity<>(message.get(), HttpStatus.OK);
+    }
+
 } //Last curly bracket
