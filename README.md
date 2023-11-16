@@ -66,6 +66,15 @@ There are a few functionalities which would really add to the program but are no
 - Allow user to search a message across all chatrooms by keyword
 - Allow users to react to a message
 
+### Tech Stack 
+
+- IntelliJ IDEA (Jdk17)
+- PostgreSQL
+- Spring boot
+- Postman
+- Postico
+
+
 
 ### The Good - What We Enjoyed
 
