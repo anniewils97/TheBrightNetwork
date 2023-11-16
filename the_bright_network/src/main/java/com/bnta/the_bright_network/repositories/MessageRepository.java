@@ -9,6 +9,9 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-//    SELECT * FROM
-    List<Message> findBySubscriptionIdIsAndMessageContentContains(Long subscriberId, String keyword);
+//    SELECT * FROM messages WHERE message_content LIKE "{keyword}"
+//    List<Message> findByMessageContentContains(String keyword);
+    List<Message> findByMessageContentContainingIgnoreCase(String keyword);
+
+//    List<Message> findBySubscriptionIdIsAndMessageContentContains(Long subscriberId, String keyword);
 }
