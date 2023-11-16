@@ -78,8 +78,6 @@ public class MessageService {
 
     }
 
-
-
     //To get all messages
     public List<MessageReplyDTO> getAllMessages(){
         List<Message> messages = messageRepository.findAll();
@@ -107,6 +105,16 @@ public class MessageService {
             messageReplyDTOs.add(messageReply);
         }
         return messageReplyDTOs;
+    }
+
+    public Optional<Message> getMessageById(long id ){
+     Optional<Message> messages = messageRepository.findById(id);
+     if(messages.isEmpty()){
+         return null;
+     }
+     Message message = messages.get();
+     messageRepository.save(message);
+     return messages;
     }
 
 
