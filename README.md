@@ -19,18 +19,16 @@ The purpose of the application is to faciliate learning and networking of BNTA c
 3. Enable users to create code challenge groups to study/work towards hackathons and codewars.
 4. Enable current users to connect with BNTA graduates/consultants i.e. an alumni networking service
 
-### The Planning
 
-Below: input planning phase and our way of working, day 1 through 6(?).
-
-Day 1 (Sunday): 
-Day 2 (Monday):
-Day 3 (Tuesday):
-Day 4 (Wednesday):
-Day 5 (Thursday):
-
+### Diagrams
 ERD 
+
 <img width="716" alt="Screenshot 2023-11-16 at 16 08 10" src="https://github.com/anniewils97/TheBrightNetwork/assets/145555841/1c375f3b-d447-4c3e-9f3d-0dcb4d197aed">
+
+Class Diagrams
+
+<img width="1051" alt="Screenshot 2023-11-16 at 16 08 00" src="https://github.com/anniewils97/TheBrightNetwork/assets/145555841/30bd3683-9600-4ff4-8460-f45a60edc306">
+
 
 ### Key Functionalities
 
