@@ -1,7 +1,17 @@
-## The Bright NetWork Chatroom - The Bright Way to Network
+## The Bright NetWork Chatroom - The BRIGHT Way to Network
 
 "Bright minds think alike!"
- 
+
+
+### The Contributers
+* [Sarah](https://github.com/SarahOgunko)
+* [Annie](https://github.com/anniewils97)
+* [Rayster](https://github.com/rjrfrst)
+* [Faiz](https://github.com/FaizF7)
+
+
+### The MVP
+
 The purpose of the application is to faciliate learning and networking of BNTA coursemates via the following:
 
 1. Enable BNTA trainers to create chatrooms for individual study groups and assign users to these rooms
@@ -9,8 +19,7 @@ The purpose of the application is to faciliate learning and networking of BNTA c
 3. Enable users to create code challenge groups to study/work towards hackathons and codewars.
 4. Enable current users to connect with BNTA graduates/consultants i.e. an alumni networking service
 
-
-### MVP
+### The Planning
 
 Below: input planning phase and our way of working, day 1 through 6(?).
 
@@ -20,12 +29,13 @@ Day 3 (Tuesday):
 Day 4 (Wednesday):
 Day 5 (Thursday):
 
--------------- edit above to suit MVP -----------------
+![ERD](<../../../../Desktop/Screenshot 2023-11-16 at 09.35.25.png>)
 
+![Class diagram](<../../../../Desktop/Screenshot 2023-11-16 at 09.35.52.png>)
 
-### Key Functionality
+### Key Functionalities
 
-Our program has the following functionalities:
+Our program has the following main functionalities:
 
 * Allow for the creation of a new user
 * Allow you to update the information of a user
@@ -40,10 +50,10 @@ Our program has the following functionalities:
 * Display all users in a specific chatroom
 
 
-### Dependencies and Context
+### Dependencies
 
 * For posting a message: need to ensure user is in the chatroom first, before allowing them to post
-* Depending on which class owns the relationship, for deleting a user or chatroom, will likely need if statements.
+* A user can not read all the messages in a chatroom if they are not a part of that chatroom.
 
 
 ### Extensions
@@ -53,20 +63,25 @@ There are a few functionalities which would really add to the program but are no
 - Allow user to search a message within a chatroom by keyword
 - Allow user to search a message across all chatrooms by keyword
 - Allow users to react to a message
-- Allow user to add a friend
-- Create functionality that disables user from creating chatroom with other users that aren't in their friends' list
 
+### Tech Stack 
 
----------------- edit below to suit our MVP -------------
+- IntelliJ IDEA (Jdk17)
+- PostgreSQL
+- Spring boot
+- Postman
+- Postico
 
-Also, the chatrooms in the MVP might all be public and available to anyone who has access to the API. You could add functionality that only allows specific people into chatrooms. There are a few ways to do this: whitelisting, blacklisting or password-protection to name a few, and these would require adding a password or lists of allowed/blocked players to the chatroom model.
+### The Good - What We Enjoyed
 
-If you really feel up for a challenge, you could research API authentication to get real login security but have a chat with the trainers ahead of attempting this.
+* Annie
+* Faiz
+* Sarah
+* Rayster
 
-### Flavours
+### The Challenges and Solutions
 
-The chatroom was an internet staple for group communication for years, but other flavours of communication have always taken the stage since. Communication platforms like WhatsApp do the job slightly differently, where a user has to be added by another user (often a group admin) if they want to join a group chat. You could look to implement this sort of feature.
-
-In addition to this, you could look at having users first “agreeing” to message each other, in the form of friends (Facebook)—where the one user has to accept another user’s invitation—or it may come in the form of followers (Twitter) where there’s no strict invitation, but both parties have to follow each other to be able to message.
-
-Remember that another group will be building a frontend for this API, and they may decide to take it in a direction that your team may not have thought about. Prioritise the basic functionality of a chatroom first before moving onto any extensions.
+* Annie
+* Faiz
+* Sarah
+* Rayster

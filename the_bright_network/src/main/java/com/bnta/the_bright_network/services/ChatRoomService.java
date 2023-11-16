@@ -24,16 +24,18 @@ public class ChatRoomService {
     public Optional<ChatRoom> findChatRoomById(Long id){
         return chatRoomRepository.findById(id);
     }
+
+
   
-    public List<ChatroomDTO> getAllChatrooms() {
+    public List<ChatRoomDTO> getAllChatrooms() {
 //        finding all the chatrooms in db
         List<ChatRoom> chatrooms = chatRoomRepository.findAll();
 //        initialising empty arraylist of chatroomDTOs
-        List<ChatroomDTO> chatroomDTOs = new ArrayList<>();
+        List<ChatRoomDTO> chatroomDTOs = new ArrayList<>();
 //looping through the chatroom list
         for (ChatRoom chatRoom : chatrooms) {
 //             for each chatroom taking id and name
-            ChatroomDTO chatroomDTO = new ChatroomDTO(chatRoom.getId(), chatRoom.getName());
+            ChatRoomDTO chatroomDTO = new ChatRoomDTO(chatRoom.getId(), chatRoom.getName());
 //            storing in the arraylist
             chatroomDTOs.add(chatroomDTO);
         }
@@ -73,13 +75,29 @@ public class ChatRoomService {
         return orderedMessages;
     }
 
+
     public List<MessageReplyDTO> filterMessages(List<MessageReplyDTO> messagesToFilter, String keyword){
         return messagesToFilter.stream().filter(message -> message.getMessageContent().toLowerCase().contains(keyword.toLowerCase())).toList();
 //        ArrayList<MessageReplyDTO> filteredMessages = new ArrayList<>();
         //                filteredMessages.add(message);
-//        messagesToFilter.removeIf(message -> !message.getMessageContent().contains(keyword));
+    }
 
-//        return  messagesToFilter;
+//    Display all users in a specific chosen chatroom
+    public List<UserDTO> allUsersInChatroom(long id){
+        Optional<ChatRoom> existingChatroom = chatRoomRepository.findById(id); //Looks for the id of the chatroom
+        //once chatroom found, look for existing users in the chatroom
+        if (existingChatroom.isEmpty()){
+            return null;
+        }
+        //
+        List<UserDTO> allUsers = new ArrayList<>();
+        for (Subscription subscription: existingChatroom.get().getSubscriptions()){
+//            allUsers.add(subscription.getUser());
+            User user = subscription.getUser();
+            UserDTO userDTO= new UserDTO(user.getId(), user.getName(), user.getAge(),user.getRole());
+            allUsers.add(userDTO);
+        }
+        return allUsers;
     }
 
 }

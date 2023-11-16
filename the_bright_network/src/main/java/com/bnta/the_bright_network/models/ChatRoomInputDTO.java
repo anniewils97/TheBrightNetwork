@@ -1,17 +1,29 @@
 package com.bnta.the_bright_network.models;
 
-public class ChatroomDTO {
+import java.util.List;
+
+public class ChatRoomInputDTO {
 
     private Long  chatroomId;
 
     private  String chatroomName;
+    private List<Long> userIds;
 
-    public ChatroomDTO(long chatroomId, String name) {
+    public ChatRoomInputDTO(long chatroomId, String name, List<Long> userIds) {
         this.chatroomId = chatroomId;
         this.chatroomName = name;
+        this.userIds = userIds;
     }
 
-    public ChatroomDTO() {
+    public ChatRoomInputDTO() {
+    }
+
+    public List<Long> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(List<Long> userIds) {
+        this.userIds = userIds;
     }
 
     public Long getChatroomId() {

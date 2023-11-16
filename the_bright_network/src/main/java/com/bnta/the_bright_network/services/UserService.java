@@ -48,7 +48,7 @@ public class UserService {
            user.setAge(userDTO.getAge());
            user.setRole(userDTO.getRole());
            userRepository.save(user);
-           UserDTO updateUser = new UserDTO(user.getId(), user.getName(), user.getAge(),user.getRole());
+           UserDTO updateUser = new UserDTO(user.getId(), user.getName(), user.getAge(),user.getRole()); //converts a user to a userDTO
            return updateUser;
        }
        return null;
