@@ -29,4 +29,10 @@ public class MessageController {
         }
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity <MessageReplyDTO> deleteAMessage (@PathVariable long id ){
+        MessageReplyDTO deletedMessage = messageService.deleteASpecificMessage(id);
+        return new ResponseEntity<>(deletedMessage, HttpStatus.OK);
+    }
+
 } //Last curly bracket

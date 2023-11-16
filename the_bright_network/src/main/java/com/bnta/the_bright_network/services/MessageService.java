@@ -59,6 +59,24 @@ public class MessageService {
         return messageReply;
     }
 
+    public MessageReplyDTO deleteASpecificMessage(long id){
+        Optional <Message> messages =  messageRepository.findById(id);
+       if(messages.isPresent()){
+           Message message = messages.get();
+           String messageContent = message.getMessageContent();
+           MessageReplyDTO deletedMessage = new MessageReplyDTO();
+           deletedMessage.setMessageContent(messageContent);
+           deletedMessage.setMessage_id(id);
+           deletedMessage.setUsername(message.getSubscription().getUser().getName());
+           deletedMessage.setTimeStamp(message.getTimeStamp().toString());
+           messageRepository.deleteById(id);
+           return deletedMessage;
+
+       }
+       return null;
+
+    }
+
 
 
 
