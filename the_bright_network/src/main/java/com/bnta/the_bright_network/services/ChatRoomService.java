@@ -4,6 +4,7 @@ package com.bnta.the_bright_network.services;
 import com.bnta.the_bright_network.models.*;
 import com.bnta.the_bright_network.repositories.ChatRoomRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
+import com.bnta.the_bright_network.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class ChatRoomService {
 
     @Autowired
     SubscriptionRepository subscriptionRepository;
+    @Autowired
+    UserRepository userRepository;
+
 
     public Optional<ChatRoom> findChatRoomById(Long id){
         return chatRoomRepository.findById(id);
@@ -98,6 +102,30 @@ public class ChatRoomService {
             allUsers.add(userDTO);
         }
         return allUsers;
+    }
+
+    public ChatRoomInputDTO saveChatRoom(ChatRoomInputDTO chatRoomInputDTO){
+        //access user ids from the dto
+        List<Long> userIds = chatRoomInputDTO.getUserIds();
+        //are there are least two users?
+        if(userIds == null || userIds.size() < 2){
+            throw new IllegalArgumentException("A chatroom must have at least two users.");
+        }
+        //create a new chatroom w a new name
+        ChatRoom chatRoom = new ChatRoom(chatRoomInputDTO.getChatroomName());
+        chatRoomRepository.save(chatRoom);
+        chatRoomInputDTO.setChatroomId(chatRoom.getId());
+        //for loop
+        for(Long userId : userIds){
+            Optional<User> user = userRepository.findById(userId);
+            if (user.isEmpty()){
+                throw new IllegalArgumentException(String.format("UserId %s does not exist", userId));
+            }
+            Subscription subscription = new Subscription(user.get(), chatRoom);
+            subscriptionRepository.save(subscription);
+        }
+//        return chatRoomRepository.save(chatRoom);
+        return chatRoomInputDTO;
     }
 
 }
