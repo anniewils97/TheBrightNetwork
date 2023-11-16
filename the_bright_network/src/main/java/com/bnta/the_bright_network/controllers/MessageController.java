@@ -36,10 +36,12 @@ public class MessageController {
     @GetMapping
     public ResponseEntity<List<MessageReplyDTO>> getAllMessage(@RequestParam Optional<String> keyword){
         if(keyword.isPresent()){
-            return null;
+            List<MessageReplyDTO> filteredMessages = messageService.getAllFilteredMessages(keyword.get());
+            return new ResponseEntity<>(filteredMessages, HttpStatus.OK);
         }
         List<MessageReplyDTO> allMessages = messageService.getAllMessages();
         return new ResponseEntity<>(allMessages, HttpStatus.OK);
     }
+
 
 } //Last curly bracket

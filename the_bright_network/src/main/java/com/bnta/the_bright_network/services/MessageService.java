@@ -62,11 +62,22 @@ public class MessageService {
 
 
 
-    //To search all messages
+    //To get all messages
     public List<MessageReplyDTO> getAllMessages(){
         List<Message> messages = messageRepository.findAll();
-        //Empty ArrayList to add in the list
+        return convertListMessagesToDTOs(messages);
+    }
+
+    //Get all messages
+    public List<MessageReplyDTO> getAllFilteredMessages(String keyword){
+        List<Message> messages = messageRepository.findByMessageContentContainingIgnoreCase(keyword);
+        return convertListMessagesToDTOs(messages);
+    }
+
+    //Create a function to convert a Message to MessageReplyDTO
+    public List<MessageReplyDTO> convertListMessagesToDTOs(List<Message> messages){
         ArrayList<MessageReplyDTO> messageReplyDTOs = new ArrayList<>();
+        //
         for (Message message: messages) {
             MessageReplyDTO messageReply = new MessageReplyDTO(
                     message.getId(),
@@ -79,8 +90,6 @@ public class MessageService {
         }
         return messageReplyDTOs;
     }
-
-//    public List<MessageReplyDTO> getAllFilteredMessages();
 
 
 
