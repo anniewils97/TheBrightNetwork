@@ -1,16 +1,22 @@
 package com.bnta.the_bright_network.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MessageReplyDTO {
     private long message_id;
     private String username;
     private String messageContent;
     private String timeStamp;
 
+    private List<Reaction> reactionsContents;
+
     public MessageReplyDTO(long message_id, String username, String messageContent, String timeStamp) {
         this.message_id = message_id;
         this.username = username;
         this.messageContent = messageContent;
         this.timeStamp = timeStamp;
+        this.reactionsContents = new ArrayList<>();
     }
 
     public MessageReplyDTO() {
@@ -46,5 +52,13 @@ public class MessageReplyDTO {
 
     public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public List<Reaction> getReactionsContents() {
+        return reactionsContents;
+    }
+
+    public void setReactionsContents(List<Reaction> reactionsContents) {
+        this.reactionsContents = reactionsContents;
     }
 }

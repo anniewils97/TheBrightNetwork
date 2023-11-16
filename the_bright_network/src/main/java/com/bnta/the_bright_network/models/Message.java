@@ -26,7 +26,7 @@ public class Message {
     private LocalDateTime timeStamp;
 
     @OneToMany(mappedBy = "message")
-    @JsonIgnoreProperties({"user"})
+    @JsonIgnoreProperties({"message"})
     private List<Reaction> reactions;
 
 //    private List<Reaction> reactions;

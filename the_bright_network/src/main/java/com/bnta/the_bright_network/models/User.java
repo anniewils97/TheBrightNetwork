@@ -28,6 +28,7 @@ public class User {
     private List<Subscription> subscriptions;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
     private List<Reaction> reactions;
     //default constructor
 
