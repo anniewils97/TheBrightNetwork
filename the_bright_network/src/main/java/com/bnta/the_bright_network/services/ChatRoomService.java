@@ -104,12 +104,16 @@ public class ChatRoomService {
         return allUsers;
     }
 
-    public ChatRoomInputDTO saveChatRoom(ChatRoomInputDTO chatRoomInputDTO){
+    public ChatRoomInputDTO saveChatRoom(long creatorId, ChatRoomInputDTO chatRoomInputDTO){
         //access user ids from the dto
         List<Long> userIds = chatRoomInputDTO.getUserIds();
+        User creatorUser = userRepository.findById(creatorId).get();
         //are there are least two users?
         if(userIds == null || userIds.size() < 2){
             throw new IllegalArgumentException("A chatroom must have at least two users.");
+        }
+        if (!userIds.contains(creatorId) && !creatorUser.getRole().equals("Trainer")){
+            throw new IllegalArgumentException("Only trainers are allowed to create a chatroom without joining it.");
         }
         //create a new chatroom w a new name
         ChatRoom chatRoom = new ChatRoom(chatRoomInputDTO.getChatroomName());
