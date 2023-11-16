@@ -1,4 +1,4 @@
-## The Bright NetWork Chatroom - The bRIGHT Way to Network
+## The Bright NetWork Chatroom - The BRIGHT Way to Network
 
 "Bright minds think alike!"
 
