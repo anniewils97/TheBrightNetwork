@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,8 +48,16 @@ public class ChatRoomController {
     }
 
     @GetMapping(value = "/{id}/messages")
-    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(@PathVariable long id, @RequestBody MessageDTO messageDTO){
+    public ResponseEntity <List<MessageReplyDTO>> getAllMessagesInOrder(
+            @PathVariable long id,
+            @RequestParam Optional<String> keyword,
+            @RequestBody MessageDTO messageDTO){
         List<MessageReplyDTO> orderedMessages = chatRoomService.getOrderedMessages(id, messageDTO);
+        if (keyword.isPresent()){
+            List<MessageReplyDTO> filteredMessages= chatRoomService.filterMessages(orderedMessages, keyword.get());
+        return new ResponseEntity<>(filteredMessages, filteredMessages==null?HttpStatus.NOT_FOUND:HttpStatus.OK);
+        }
+
         return new ResponseEntity<>(orderedMessages, orderedMessages==null?HttpStatus.FORBIDDEN:HttpStatus.OK);
     }
 

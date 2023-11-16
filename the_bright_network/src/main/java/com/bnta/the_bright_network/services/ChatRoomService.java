@@ -75,6 +75,13 @@ public class ChatRoomService {
         return orderedMessages;
     }
 
+
+    public List<MessageReplyDTO> filterMessages(List<MessageReplyDTO> messagesToFilter, String keyword){
+        return messagesToFilter.stream().filter(message -> message.getMessageContent().toLowerCase().contains(keyword.toLowerCase())).toList();
+//        ArrayList<MessageReplyDTO> filteredMessages = new ArrayList<>();
+        //                filteredMessages.add(message);
+    }
+
 //    Display all users in a specific chosen chatroom
     public List<UserDTO> allUsersInChatroom(long id){
         Optional<ChatRoom> existingChatroom = chatRoomRepository.findById(id); //Looks for the id of the chatroom
@@ -92,12 +99,5 @@ public class ChatRoomService {
         }
         return allUsers;
     }
-
-
-//    public List<MessageReplyDTO> messagesToMessageReplyDTO(List<Message> messages){
-//
-//        return null;
-//    }
-
 
 }
