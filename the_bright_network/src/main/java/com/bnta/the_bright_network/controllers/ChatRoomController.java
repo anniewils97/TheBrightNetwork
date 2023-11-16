@@ -68,5 +68,14 @@ public class ChatRoomController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<ChatRoomInputDTO> createChatRoom(@RequestBody ChatRoomInputDTO chatRoomInputDTO){
+        ChatRoomInputDTO createdChatRoom = chatRoomService.saveChatRoom(chatRoomInputDTO);
+        if (createdChatRoom != null) {
+            return new ResponseEntity<>(createdChatRoom, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 }//end
