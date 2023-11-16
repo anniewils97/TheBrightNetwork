@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/messages")
 public class MessageController {
@@ -28,11 +31,22 @@ public class MessageController {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
-
+  
     @DeleteMapping(value = "/{id}")
     public ResponseEntity <MessageReplyDTO> deleteAMessage (@PathVariable long id ){
         MessageReplyDTO deletedMessage = messageService.deleteASpecificMessage(id);
         return new ResponseEntity<>(deletedMessage, HttpStatus.OK);
+    }
+  
+    //Display all messages
+    @GetMapping
+    public ResponseEntity<List<MessageReplyDTO>> getAllMessage(@RequestParam Optional<String> keyword){
+        if(keyword.isPresent()){
+            List<MessageReplyDTO> filteredMessages = messageService.getAllFilteredMessages(keyword.get());
+            return new ResponseEntity<>(filteredMessages, HttpStatus.OK);
+        }
+        List<MessageReplyDTO> allMessages = messageService.getAllMessages();
+        return new ResponseEntity<>(allMessages, HttpStatus.OK);
     }
 
 } //Last curly bracket
