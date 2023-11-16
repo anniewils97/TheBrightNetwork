@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,27 @@ public class MessageService {
         return messageReply;
     }
 
+
+
+    //To search all messages
+    public List<MessageReplyDTO> getAllMessages(){
+        List<Message> messages = messageRepository.findAll();
+        //Empty ArrayList to add in the list
+        ArrayList<MessageReplyDTO> messageReplyDTOs = new ArrayList<>();
+        for (Message message: messages) {
+            MessageReplyDTO messageReply = new MessageReplyDTO(
+                    message.getId(),
+                    message.getSubscription().getUser().getName(),
+                    message.getMessageContent(),
+                    message.getTimeStamp().toString()
+            );
+            //Fill the empty ArrayList messageReplyDTOs
+            messageReplyDTOs.add(messageReply);
+        }
+        return messageReplyDTOs;
+    }
+
+//    public List<MessageReplyDTO> getAllFilteredMessages();
 
 
 

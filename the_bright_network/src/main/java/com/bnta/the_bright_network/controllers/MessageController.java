@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/messages")
 public class MessageController {
@@ -27,6 +30,16 @@ public class MessageController {
         }catch(Exception e){
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
+    }
+
+    //Display all messages
+    @GetMapping
+    public ResponseEntity<List<MessageReplyDTO>> getAllMessage(@RequestParam Optional<String> keyword){
+        if(keyword.isPresent()){
+            return null;
+        }
+        List<MessageReplyDTO> allMessages = messageService.getAllMessages();
+        return new ResponseEntity<>(allMessages, HttpStatus.OK);
     }
 
 } //Last curly bracket
