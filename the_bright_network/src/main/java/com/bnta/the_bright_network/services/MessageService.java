@@ -1,9 +1,6 @@
 package com.bnta.the_bright_network.services;
 
-import com.bnta.the_bright_network.models.Message;
-import com.bnta.the_bright_network.models.MessageDTO;
-import com.bnta.the_bright_network.models.MessageReplyDTO;
-import com.bnta.the_bright_network.models.Subscription;
+import com.bnta.the_bright_network.models.*;
 import com.bnta.the_bright_network.repositories.MessageRepository;
 import com.bnta.the_bright_network.repositories.SubscriptionRepository;
 import jakarta.transaction.Transactional;
@@ -103,7 +100,15 @@ public class MessageService {
                     message.getMessageContent(),
                     message.getTimeStamp().toString()
             );
-//            messageReply.setReactionsContents(message.getReactions());
+
+            List<Reaction> reactions = message.getReactions();
+            List<String> reactionContents = new ArrayList<>();
+            for (Reaction reaction: reactions) {
+                reactionContents.add(reaction.getReactionContent());
+            }
+
+            messageReply.setReactionsContents(reactionContents);
+
             //Fill the empty ArrayList messageReplyDTOs
             messageReplyDTOs.add(messageReply);
         }

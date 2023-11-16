@@ -9,7 +9,7 @@ public class MessageReplyDTO {
     private String messageContent;
     private String timeStamp;
 
-    private List<Reaction> reactionsContents;
+    private List<String> reactionsContents;
 
     public MessageReplyDTO(long message_id, String username, String messageContent, String timeStamp) {
         this.message_id = message_id;
@@ -54,11 +54,11 @@ public class MessageReplyDTO {
         this.timeStamp = timeStamp;
     }
 
-    public List<Reaction> getReactionsContents() {
+    public List<String> getReactionsContents() {
         return reactionsContents;
     }
 
-    public void setReactionsContents(List<Reaction> reactionsContents) {
+    public void setReactionsContents(List<String> reactionsContents) {
         this.reactionsContents = reactionsContents;
     }
 }
