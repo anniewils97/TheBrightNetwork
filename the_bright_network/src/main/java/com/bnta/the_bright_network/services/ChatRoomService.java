@@ -73,11 +73,13 @@ public class ChatRoomService {
         return orderedMessages;
     }
 
+    public List<MessageReplyDTO> filterMessages(List<MessageReplyDTO> messagesToFilter, String keyword){
+        return messagesToFilter.stream().filter(message -> message.getMessageContent().toLowerCase().contains(keyword.toLowerCase())).toList();
+//        ArrayList<MessageReplyDTO> filteredMessages = new ArrayList<>();
+        //                filteredMessages.add(message);
+//        messagesToFilter.removeIf(message -> !message.getMessageContent().contains(keyword));
 
-//    public List<MessageReplyDTO> messagesToMessageReplyDTO(List<Message> messages){
-//
-//        return null;
-//    }
-
+//        return  messagesToFilter;
+    }
 
 }
