@@ -33,8 +33,7 @@ Day 5 (Thursday):
 
 ![Class diagram](<../../../../Desktop/Screenshot 2023-11-16 at 09.35.52.png>)
 
-[
-](https://app.diagrams.net/?libs=general;uml#Hanniewils97%2FTheBrightNetwork%2Fmain%2FProjectClassDiagram.drawio)
+https://app.diagrams.net/?libs=general;uml#Hanniewils97%2FTheBrightNetwork%2Fmain%2FProjectClassDiagram.drawio
 ### Key Functionalities
 
 Our program has the following main functionalities:
