@@ -103,14 +103,12 @@ public class MessageService {
                     message.getMessageContent(),
                     message.getTimeStamp().toString()
             );
+//            messageReply.setReactionsContents(message.getReactions());
             //Fill the empty ArrayList messageReplyDTOs
             messageReplyDTOs.add(messageReply);
         }
         return messageReplyDTOs;
     }
-
-
-
 
 
 } //Last curly bracket

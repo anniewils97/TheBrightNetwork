@@ -24,6 +24,9 @@ public class ChatRoomService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    MessageService messageService;
+
 
     public Optional<ChatRoom> findChatRoomById(Long id){
         return chatRoomRepository.findById(id);
@@ -64,19 +67,7 @@ public class ChatRoomService {
         //Sort messages by timestamp using lambda function
         Collections.sort(allMessages, (b,a)->a.getTimeStamp().compareTo(b.getTimeStamp()));
 
-        ArrayList<MessageReplyDTO> orderedMessages = new ArrayList<>();
-      
-        for (Message message: allMessages) {
-            MessageReplyDTO messageReplyDTO = new MessageReplyDTO(
-                    message.getId(),
-                    message.getSubscription().getUser().getName(),
-                    message.getMessageContent(),
-                    message.getTimeStamp().toString()
-            );
-            orderedMessages.add(messageReplyDTO);
-        }
-
-        return orderedMessages;
+        return messageService.convertListMessagesToDTOs(allMessages);
     }
 
 

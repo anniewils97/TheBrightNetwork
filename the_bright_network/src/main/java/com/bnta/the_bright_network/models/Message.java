@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "messages")
@@ -23,6 +25,10 @@ public class Message {
     @Column
     private LocalDateTime timeStamp;
 
+    @OneToMany(mappedBy = "message")
+    @JsonIgnoreProperties({"message"})
+    private List<Reaction> reactions;
+
 //    private List<Reaction> reactions;
 
 
@@ -30,6 +36,7 @@ public class Message {
         this.messageContent = messageContent;
         this.subscription = subscription;
         this.timeStamp = timeStamp;
+        this.reactions = new ArrayList<>();
     }
 
     public Message() {
@@ -65,6 +72,14 @@ public class Message {
 
     public void setTimeStamp(LocalDateTime timeStamp) {
         this.timeStamp = timeStamp;
+    }
+
+    public List<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(List<Reaction> reactions) {
+        this.reactions = reactions;
     }
 }
 

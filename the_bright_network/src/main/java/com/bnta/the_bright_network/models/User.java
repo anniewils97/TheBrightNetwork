@@ -27,6 +27,9 @@ public class User {
     @JsonIgnoreProperties({"user"})
     private List<Subscription> subscriptions;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user"})
+    private List<Reaction> reactions;
     //default constructor
 
     public User() {
@@ -39,6 +42,7 @@ public class User {
         this.age = age;
         this.role = role;
         this.subscriptions = new ArrayList<>();
+        this.reactions = new ArrayList<>();
     }
 
     //getters n setters
@@ -81,5 +85,13 @@ public class User {
 
     public void setSubscriptions(List<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    public List<Reaction> getReactions() {
+        return reactions;
+    }
+
+    public void setReactions(List<Reaction> reactions) {
+        this.reactions = reactions;
     }
 } // last curly bracket
