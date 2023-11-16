@@ -3,8 +3,7 @@
 "Bright minds think alike!"
 
 
-### The Team
-
+### The Contributers
 * [Sarah](https://github.com/SarahOgunko)
 * [Annie](https://github.com/anniewils97)
 * [Rayster](https://github.com/rjrfrst)
@@ -73,8 +72,6 @@ There are a few functionalities which would really add to the program but are no
 - Spring boot
 - Postman
 - Postico
-
-
 
 ### The Good - What We Enjoyed
 
