@@ -95,9 +95,10 @@ public class ChatRoomService {
         return allUsers;
     }
 
-    public ChatRoomInputDTO saveChatRoom(long creatorId, ChatRoomInputDTO chatRoomInputDTO){
+    public ChatRoomDTO saveChatRoom(ChatRoomInputDTO chatRoomInputDTO){
         //access user ids from the dto
         List<Long> userIds = chatRoomInputDTO.getUserIds();
+        Long creatorId = chatRoomInputDTO.getCreatorId();
         User creatorUser = userRepository.findById(creatorId).get();
         //are there are least two users?
         if(userIds == null || userIds.size() < 2){
@@ -109,7 +110,8 @@ public class ChatRoomService {
         //create a new chatroom w a new name
         ChatRoom chatRoom = new ChatRoom(chatRoomInputDTO.getChatroomName());
         chatRoomRepository.save(chatRoom);
-        chatRoomInputDTO.setChatroomId(chatRoom.getId());
+        ChatRoomDTO chatRoomDTO = new ChatRoomDTO(chatRoom.getId(), chatRoom.getName());
+
         //for loop
         for(Long userId : userIds){
             Optional<User> user = userRepository.findById(userId);
@@ -119,8 +121,9 @@ public class ChatRoomService {
             Subscription subscription = new Subscription(user.get(), chatRoom);
             subscriptionRepository.save(subscription);
         }
+        chatRoomDTO.setUserIds(userIds);
 //        return chatRoomRepository.save(chatRoom);
-        return chatRoomInputDTO;
+        return chatRoomDTO;
     }
 
 }

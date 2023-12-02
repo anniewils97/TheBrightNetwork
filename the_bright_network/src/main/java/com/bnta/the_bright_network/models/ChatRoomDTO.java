@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChatRoomDTO {
@@ -8,9 +9,12 @@ public class ChatRoomDTO {
 
     private  String chatroomName;
 
+    private List<Long> userIds;
+
     public ChatRoomDTO(long chatroomId, String name) {
         this.chatroomId = chatroomId;
         this.chatroomName = name;
+        this.userIds = new ArrayList<>();
     }
 
     public ChatRoomDTO() {
@@ -29,5 +33,13 @@ public class ChatRoomDTO {
 
     public void setChatroomName(String chatroomName) {
         this.chatroomName = chatroomName;
+    }
+
+    public List<Long> getUserIds() {
+        return userIds;
+    }
+
+    public void setUserIds(List<Long> userIds) {
+        this.userIds = userIds;
     }
 }

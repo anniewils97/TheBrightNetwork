@@ -4,13 +4,13 @@ import java.util.List;
 
 public class ChatRoomInputDTO {
 
-    private Long  chatroomId;
+    private Long  creatorId;
 
-    private  String chatroomName;
+    private String chatroomName;
     private List<Long> userIds;
 
-    public ChatRoomInputDTO(long chatroomId, String name, List<Long> userIds) {
-        this.chatroomId = chatroomId;
+    public ChatRoomInputDTO(long creatorId, String name, List<Long> userIds) {
+        this.creatorId = creatorId;
         this.chatroomName = name;
         this.userIds = userIds;
     }
@@ -26,12 +26,12 @@ public class ChatRoomInputDTO {
         this.userIds = userIds;
     }
 
-    public Long getChatroomId() {
-        return chatroomId;
+    public Long getCreatorId() {
+        return creatorId;
     }
 
-    public void setChatroomId(Long chatroomId) {
-        this.chatroomId = chatroomId;
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
     public String getChatroomName() {
