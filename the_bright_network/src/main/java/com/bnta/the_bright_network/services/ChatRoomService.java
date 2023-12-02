@@ -45,6 +45,15 @@ public class ChatRoomService {
             ChatRoomDTO chatroomDTO = new ChatRoomDTO(chatRoom.getId(), chatRoom.getName());
 //            storing in the arraylist
             chatroomDTOs.add(chatroomDTO);
+
+            List<Long> userIds = new ArrayList<>();
+
+            for (Subscription subscription: chatRoom.getSubscriptions()){
+                userIds.add(subscription.getUser().getId());
+            }
+
+            chatroomDTO.setUserIds(userIds);
+
         }
         return chatroomDTOs;
     }
