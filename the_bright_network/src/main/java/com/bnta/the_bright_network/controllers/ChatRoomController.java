@@ -65,7 +65,7 @@ public class ChatRoomController {
     @GetMapping(value = "/{id}/users")
     public ResponseEntity<List<UserDTO>> getAllUsersInSpecificChatroom(@PathVariable long id){
         List<UserDTO> users = chatRoomService.allUsersInChatroom(id);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return new ResponseEntity<>(users, users==null?HttpStatus.BAD_REQUEST:HttpStatus.OK);
     }
 
     @PostMapping
