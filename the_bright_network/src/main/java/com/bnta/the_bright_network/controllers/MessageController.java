@@ -33,14 +33,14 @@ public class MessageController {
     }
   
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity <MessageReplyDTO> deleteAMessage (@PathVariable long id ){
+    public ResponseEntity <MessageReplyDTO> deleteAMessage(@PathVariable long id ){
         MessageReplyDTO deletedMessage = messageService.deleteASpecificMessage(id);
         return new ResponseEntity<>(deletedMessage, HttpStatus.OK);
     }
   
     //Display all messages
     @GetMapping
-    public ResponseEntity<List<MessageReplyDTO>> getAllMessage(@RequestParam Optional<String> keyword){
+    public ResponseEntity<List<MessageReplyDTO>> getAllMessages(@RequestParam Optional<String> keyword){
         if(keyword.isPresent()){
             List<MessageReplyDTO> filteredMessages = messageService.getAllFilteredMessages(keyword.get());
             return new ResponseEntity<>(filteredMessages, HttpStatus.OK);
