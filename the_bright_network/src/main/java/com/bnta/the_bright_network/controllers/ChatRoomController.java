@@ -32,8 +32,8 @@ public class ChatRoomController {
         }
     }
     @GetMapping
-    public  ResponseEntity<List<ChatRoomDTO>> getAllChatrooms(){
-        List<ChatRoomDTO> chatRooms = chatRoomService.getAllChatrooms();
+    public  ResponseEntity<List<ChatRoom>> getAllChatrooms(){
+        List<ChatRoom> chatRooms = chatRoomService.getAllChatrooms();
         return new ResponseEntity<>(chatRooms, HttpStatus.OK);
     }
 
@@ -65,7 +65,7 @@ public class ChatRoomController {
     @GetMapping(value = "/{id}/users")
     public ResponseEntity<List<UserDTO>> getAllUsersInSpecificChatroom(@PathVariable long id){
         List<UserDTO> users = chatRoomService.allUsersInChatroom(id);
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return new ResponseEntity<>(users, users==null?HttpStatus.BAD_REQUEST:HttpStatus.OK);
     }
 
     @PostMapping

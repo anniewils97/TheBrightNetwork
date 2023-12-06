@@ -1,5 +1,6 @@
 package com.bnta.the_bright_network.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
@@ -14,12 +15,12 @@ public class Reaction {
     private String reactionContent;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"users"})
+    @JsonIgnore(value = true)
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "message_id")
-    @JsonIgnoreProperties({"reactions"})
+    @JsonIgnore()
     private Message message;
 
     public Reaction(String reactionContent, User user, Message message) {

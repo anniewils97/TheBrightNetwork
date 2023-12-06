@@ -1,17 +1,27 @@
 package com.bnta.the_bright_network.models;
 
-public class ReactionDTO {
+public class ReactionOutputDTO {
+    private Long reactionId;
     private Long messageId;
     private Long userId;
     private String reactionContent;
 
-    public ReactionDTO(Long messageId, Long userId, String reactionContent) {
+    public ReactionOutputDTO(Long reactionId, Long messageId, Long userId, String reactionContent) {
+        this.reactionId = reactionId;
         this.messageId = messageId;
         this.userId = userId;
         this.reactionContent = reactionContent;
     }
 
-    public ReactionDTO() {
+    public ReactionOutputDTO() {
+    }
+
+    public Long getReactionId() {
+        return reactionId;
+    }
+
+    public void setReactionId(Long reactionId) {
+        this.reactionId = reactionId;
     }
 
     public Long getMessageId() {

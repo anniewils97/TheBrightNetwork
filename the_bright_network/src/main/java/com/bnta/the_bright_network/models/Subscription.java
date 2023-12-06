@@ -24,7 +24,7 @@ public class Subscription {
     private ChatRoom chatRoom;
 
     @OneToMany(mappedBy = "subscription")
-    @JsonIgnoreProperties({"subscription"})
+    @JsonIgnoreProperties({"subscription" , "reaction"})
     private List<Message> messages;
 
     public Subscription() {

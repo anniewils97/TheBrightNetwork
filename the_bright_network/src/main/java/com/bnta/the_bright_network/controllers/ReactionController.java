@@ -2,6 +2,7 @@ package com.bnta.the_bright_network.controllers;
 
 import com.bnta.the_bright_network.models.Reaction;
 import com.bnta.the_bright_network.models.ReactionDTO;
+import com.bnta.the_bright_network.models.ReactionOutputDTO;
 import com.bnta.the_bright_network.services.ReactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ReactionController {
     ReactionService reactionService;
 
     @PostMapping
-    public ResponseEntity<ReactionDTO> addAReaction(@RequestBody ReactionDTO reactionDTO){
+    public ResponseEntity<ReactionOutputDTO> addAReaction(@RequestBody ReactionDTO reactionDTO){
         return new ResponseEntity<>(reactionService.saveReaction(reactionDTO), HttpStatus.OK);
     }
 }
