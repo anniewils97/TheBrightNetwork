@@ -19,14 +19,9 @@ public class UserService {
 
 
     //Displaying all users
-    public List<UserDTO> displayAllUsers(){
-        List <User> users =  userRepository.findAll();
-        List <UserDTO> userDTOs = new ArrayList<>();
-        for(User user : users ){
-            UserDTO userDTO = new UserDTO(user.getId(), user.getName(), user.getAge(),user.getRole());
-           userDTOs.add(userDTO);
-        }
-        return userDTOs;
+    public List<User> displayAllUsers(){
+        return userRepository.findAll();
+
     }
 
     //Getting users by their ID

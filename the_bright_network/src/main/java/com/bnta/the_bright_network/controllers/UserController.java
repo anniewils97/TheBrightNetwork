@@ -20,9 +20,9 @@ public class UserController {
 
     //Getting all users
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers(){
-        List<UserDTO> users = userService.displayAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<User>> getAllUsers(){
+        List<User> users = userService.displayAllUsers();
+        return new ResponseEntity<>(users, users.isEmpty() ? HttpStatus.NOT_FOUND: HttpStatus.OK);
     }
 
     //Display a user by ID
