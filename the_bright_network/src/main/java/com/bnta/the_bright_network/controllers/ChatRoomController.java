@@ -32,8 +32,8 @@ public class ChatRoomController {
         }
     }
     @GetMapping
-    public  ResponseEntity<List<ChatRoomDTO>> getAllChatrooms(){
-        List<ChatRoomDTO> chatRooms = chatRoomService.getAllChatrooms();
+    public  ResponseEntity<List<ChatRoom>> getAllChatrooms(){
+        List<ChatRoom> chatRooms = chatRoomService.getAllChatrooms();
         return new ResponseEntity<>(chatRooms, HttpStatus.OK);
     }
 

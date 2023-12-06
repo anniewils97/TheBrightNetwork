@@ -34,28 +34,9 @@ public class ChatRoomService {
 
 
   
-    public List<ChatRoomDTO> getAllChatrooms() {
+    public List<ChatRoom> getAllChatrooms() {
 //        finding all the chatrooms in db
-        List<ChatRoom> chatrooms = chatRoomRepository.findAll();
-//        initialising empty arraylist of chatroomDTOs
-        List<ChatRoomDTO> chatroomDTOs = new ArrayList<>();
-//looping through the chatroom list
-        for (ChatRoom chatRoom : chatrooms) {
-//             for each chatroom taking id and name
-            ChatRoomDTO chatroomDTO = new ChatRoomDTO(chatRoom.getId(), chatRoom.getName());
-//            storing in the arraylist
-            chatroomDTOs.add(chatroomDTO);
-
-            List<Long> userIds = new ArrayList<>();
-
-            for (Subscription subscription: chatRoom.getSubscriptions()){
-                userIds.add(subscription.getUser().getId());
-            }
-
-            chatroomDTO.setUserIds(userIds);
-
-        }
-        return chatroomDTOs;
+        return chatRoomRepository.findAll();
     }
 
     public List<MessageReplyDTO> getOrderedMessages(long id, MessageDTO messageDTO) {
