@@ -76,15 +76,15 @@ public class MessageService {
     }
 
     //To get all messages
-    public List<MessageReplyDTO> getAllMessages(){
+    public List<Message> getAllMessages(){
         List<Message> messages = messageRepository.findAll();
-        return convertListMessagesToDTOs(messages);
+        return messages;
     }
 
     //Get all messages
-    public List<MessageReplyDTO> getAllFilteredMessages(String keyword){
+    public List<Message> getAllFilteredMessages(String keyword){
         List<Message> messages = messageRepository.findByMessageContentContainingIgnoreCase(keyword);
-        return convertListMessagesToDTOs(messages);
+        return messages;
     }
 
     //Create a function to convert a Message to MessageReplyDTO
