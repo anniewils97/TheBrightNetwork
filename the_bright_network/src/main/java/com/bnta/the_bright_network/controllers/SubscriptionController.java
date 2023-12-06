@@ -32,12 +32,12 @@ public class SubscriptionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SubscriptionReplyDTO>> getAllSubscriptions(){
-        List<SubscriptionReplyDTO> subscriptionReplyDTOs = subscriptionService.displayAllSubscriptions()
-                .stream()
-                .map(subscription -> modelMapper.map(subscription, SubscriptionReplyDTO.class))
-                .toList();
+    public ResponseEntity<List<Subscription>> getAllSubscriptions(){
+        List<Subscription> subscriptions = subscriptionService.displayAllSubscriptions();
+//                .stream()
+//                .map(subscription -> modelMapper.map(subscription, SubscriptionReplyDTO.class))
+//                .toList();
 
-        return new ResponseEntity<>(subscriptionReplyDTOs, HttpStatus.OK);
+        return new ResponseEntity<>(subscriptions, HttpStatus.OK);
     }
 }

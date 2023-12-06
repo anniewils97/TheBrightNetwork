@@ -20,7 +20,7 @@ public class Reaction {
 
     @ManyToOne
     @JoinColumn(name = "message_id")
-    @JsonIgnoreProperties({"reactions"})
+    @JsonIgnore()
     private Message message;
 
     public Reaction(String reactionContent, User user, Message message) {
